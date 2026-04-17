@@ -1,18 +1,35 @@
 ---
 // @ts-ignore
 import { Icon } from "astro-icon/components";
+import DOPodImage from "@/assets/Pod main logo.png";
+import Image from 'astro/components/Image.astro';
 ---
 
 <div class="mt-24">
-  <h2 class="text-center text-slate-500">Works with your technologies</h2>
+  <h2 class="text-center text-slate-500">Tecnologías que dominamos</h2>
   <div class="flex gap-8 md:gap-20 items-center justify-center mt-10 flex-wrap">
 
-    <Icon class="size-8 md:size-12" name="simple-icons:react" />
-    <Icon class="size-8 md:size-12" name="simple-icons:svelte" />
-    <Icon class="size-8 md:size-12" name="simple-icons:astro" />
-    <Icon class="size-8 md:size-16" name="simple-icons:tailwindcss" />
-    <Icon class="size-8 md:size-16" name="simple-icons:alpinedotjs" />
-    <Icon class="size-8 md:size-12" name="simple-icons:vercel" />
+    <Icon class="size-8 md:size-12" name="simple-icons:rubyonrails" />
+    <Icon class="size-8 md:size-12" name="simple-icons:python" />
+    <Icon class="size-8 md:size-12" name="simple-icons:javascript" />
+    <Icon class="size-8 md:size-12" name="simple-icons:docker" />
+    <Icon class="size-8 md:size-16" name="simple-icons:postgresql" />
+    <Icon class="size-8 md:size-16" name="simple-icons:mysql" />
+    <Icon class="size-8 md:size-16" name="simple-icons:linux" />
+    <Icon class="size-8 md:size-12" name="simple-icons:dotnet" />
 
   </div>
+</div>
+
+<div class="mt-16 flex flex-col items-center gap-4">
+  <h2 class="text-center text-slate-500">Partner Oficial</h2>
+  <a
+    href="https://www.digitalocean.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center gap-3 border border-slate-200 rounded-xl px-8 py-4 hover:shadow-md transition-shadow">
+    <Image src={DOPodImage} alt="DigitalOcean Partner" class="w-12 h-12" />
+    <span class="text-xl font-semibold text-slate-700">DigitalOcean</span>
+    <span class="ml-2 px-2 py-0.5 text-xs font-semibold uppercase bg-blue-100 text-blue-700 rounded-full">Partner</span>
+  </a>
 </div>

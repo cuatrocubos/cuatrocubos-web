@@ -8,6 +8,7 @@ import "../styles/global.css";
 
 export interface Props {
   title: string;
+  description?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
@@ -17,15 +18,41 @@ const resolvedImageWithDomain = new URL(
   Astro.site
 ).toString();
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Astroship"
-  : "Astroship - Starter Template for Astro with Tailwind CSS";
+  ? title
+  : "Cuatrocubos Soluciones | Software a la Medida";
+
+const makeDescription = description
+  ? description
+  : "Cuatrocubos Soluciones es una empresa de software con sede en Honduras. Desarrollamos software a la medida, implementamos ERP y punto de venta con ERPNext, y ofrecemos consultoría, integraciones y soporte tecnológico.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Cuatrocubos Soluciones",
+  url: "https://cuatrocubos.com",
+  logo: "https://cuatrocubos.com/logo.png",
+  description: makeDescription,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Valle de Ángeles",
+    addressRegion: "Francisco Morazán",
+    addressCountry: "HN",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "info@cuatrocubos.com",
+    contactType: "customer service",
+    availableLanguage: ["Spanish"],
+  },
+  sameAs: [],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -33,27 +60,36 @@ const makeTitle = title
     <meta name="generator" content={Astro.generator} />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
+    <meta name="keywords" content="software a la medida, desarrollo de software Honduras, ERPNext Honduras, ERP Honduras, punto de venta Honduras, consultoría tecnológica, integraciones de software, Cuatrocubos, DigitalOcean partner Honduras" />
+    <meta name="robots" content="index, follow" />
     <SEO
       title={makeTitle}
-      description="Astroship is a starter website template for Astro built with TailwindCSS."
+      description={makeDescription}
       canonical={canonicalURL}
       twitter={{
-        creator: "@surjithctly",
-        site: "@web3templates",
+        creator: "@cuatrocubos",
+        site: "@cuatrocubos",
         card: "summary_large_image",
       }}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Astroship - Starter Template for Astro`,
+          title: makeTitle,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Astroship Homepage Screenshot",
+          alt: "Cuatrocubos Soluciones - Software a la Medida",
+          width: 1200,
+          height: 630,
+        },
+        optional: {
+          locale: "es_HN",
+          siteName: "Cuatrocubos Soluciones",
         },
       }}
     />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <Navbar />
